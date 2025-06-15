@@ -1,0 +1,179 @@
+W0615 22:51:16.287000 20495 torch/distributed/run.py:793] 
+W0615 22:51:16.287000 20495 torch/distributed/run.py:793] *****************************************
+W0615 22:51:16.287000 20495 torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0615 22:51:16.287000 20495 torch/distributed/run.py:793] *****************************************
+============================================================
+FORCING JAX PATTERN
+============================================================
+
+Step 1: Forcing JAX pattern for In @ W_in
+[rank7]:V0615 22:51:22.344000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank2]:V0615 22:51:22.344000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank3]:V0615 22:51:22.344000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank1]:V0615 22:51:22.344000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank5]:V0615 22:51:22.344000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank0]:V0615 22:51:22.344000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank6]:V0615 22:51:22.344000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank4]:V0615 22:51:22.344000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank2]:V0615 22:51:22.355000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank3]:V0615 22:51:22.355000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank7]:V0615 22:51:22.355000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank5]:V0615 22:51:22.355000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank1]:V0615 22:51:22.356000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank0]:V0615 22:51:22.356000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+After redistribution for matmul1:
+  Input: (Shard(dim=0), Replicate())
+  W_in: (Replicate(), Shard(dim=1))
+[rank7]:V0615 22:51:22.358000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank2]:V0615 22:51:22.358000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank6]:V0615 22:51:22.359000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank0]:V0615 22:51:22.359000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank5]:V0615 22:51:22.359000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank4]:V0615 22:51:22.359000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 0
+[rank1]:V0615 22:51:22.360000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank3]:V0615 22:51:22.360000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank6]:V0615 22:51:22.361000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank4]:V0615 22:51:22.362000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Replicate()) on (1024, 2048)), Spec((Replicate(), Shard(dim=1)) on (2048, 16384)) @ mesh: (4, 2))
+[rank2]:V0615 22:51:22.363000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank7]:V0615 22:51:22.364000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank0]:V0615 22:51:22.364000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank5]:V0615 22:51:22.364000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank1]:V0615 22:51:22.365000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank3]:V0615 22:51:22.365000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank6]:V0615 22:51:22.369000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank4]:V0615 22:51:22.369000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank7]:V0615 22:51:22.423000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank2]:V0615 22:51:22.425000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank7]:V0615 22:51:22.426000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank5]:V0615 22:51:22.428000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank2]:V0615 22:51:22.428000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+  Result: (Shard(dim=0), Shard(dim=1))
+[rank6]:V0615 22:51:22.428000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank0]:V0615 22:51:22.429000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank3]:V0615 22:51:22.429000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank5]:V0615 22:51:22.431000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank6]:V0615 22:51:22.431000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank3]:V0615 22:51:22.432000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank0]:V0615 22:51:22.432000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank7]:V0615 22:51:22.434000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank2]:V0615 22:51:22.435000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank7]:V0615 22:51:22.436000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank7]:V0615 22:51:22.437000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank7]:V0615 22:51:22.437000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank2]:V0615 22:51:22.438000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank5]:V0615 22:51:22.438000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+
+Step 2: Forcing JAX pattern for Intermediate @ W_out
+Before matmul2:
+  Intermediate: (Shard(dim=0), Shard(dim=1))
+  W_out: (Shard(dim=1), Shard(dim=0))
+[rank2]:V0615 22:51:22.439000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank6]:V0615 22:51:22.439000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank0]:V0615 22:51:22.439000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank2]:V0615 22:51:22.439000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank3]:V0615 22:51:22.440000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank4]:V0615 22:51:22.440000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank5]:V0615 22:51:22.441000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank5]:V0615 22:51:22.441000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank1]:V0615 22:51:22.441000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.gelu.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)) @ mesh: (4, 2))
+[rank0]:V0615 22:51:22.441000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank6]:V0615 22:51:22.441000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank0]:V0615 22:51:22.442000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank6]:V0615 22:51:22.442000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank5]:V0615 22:51:22.442000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank0]:V0615 22:51:22.442000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank6]:V0615 22:51:22.443000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank3]:V0615 22:51:22.443000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank3]:V0615 22:51:22.443000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank4]:V0615 22:51:22.443000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank3]:V0615 22:51:22.444000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank1]:V0615 22:51:22.444000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.gelu.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Shard(dim=0), Shard(dim=1)), tensor_meta=TensorMeta(shape=torch.Size([1024, 16384]), stride=(16384, 1), dtype=torch.float32)), redistribute_schema=None, needs_redistribute=False)
+[rank4]:V0615 22:51:22.451000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank1]:V0615 22:51:22.452000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:167] Dispatching op_call: Op(op=aten.mm.default, args_schema=Spec((Shard(dim=0), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=1), Shard(dim=0)) on (16384, 2048)) @ mesh: (4, 2))
+[rank4]:V0615 22:51:22.453000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank4]:V0615 22:51:22.454000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank1]:V0615 22:51:22.454000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_dispatch.py:171] output_sharding for aten.mm.default: OutputSharding(output_spec=DTensorSpec(mesh=DeviceMesh('cuda', [[0, 1], [2, 3], [4, 5], [6, 7]], mesh_dim_names=('fsdp', 'tp')), placements=(Partial(sum), Partial(sum)), tensor_meta=TensorMeta(shape=torch.Size([1024, 2048]), stride=(2048, 1), dtype=torch.float32)), redistribute_schema=OpSchema(op=aten.mm.default, args_schema=(Spec((Shard(dim=1), Shard(dim=1)) on (1024, 16384)), Spec((Shard(dim=0), Shard(dim=0)) on (16384, 2048))), kwargs_schema={}), needs_redistribute=True)
+[rank1]:V0615 22:51:22.455000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to R on mesh dim 1
+[rank4]:V0615 22:51:22.455000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank1]:V0615 22:51:22.456000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to S(1) on mesh dim 0
+[rank3]:V0615 22:51:22.585000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank1]:V0615 22:51:22.585000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank5]:V0615 22:51:22.585000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank7]:V0615 22:51:22.585000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank1]:V0615 22:51:22.586000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank3]:V0615 22:51:22.586000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank5]:V0615 22:51:22.586000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank7]:V0615 22:51:22.586000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank3]:V0615 22:51:22.587000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank1]:V0615 22:51:22.587000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank5]:V0615 22:51:22.587000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank7]:V0615 22:51:22.587000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank7]:V0615 22:51:22.591000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank5]:V0615 22:51:22.591000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank1]:V0615 22:51:22.592000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank3]:V0615 22:51:22.592000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank7]:V0615 22:51:22.592000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank5]:V0615 22:51:22.592000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank1]:V0615 22:51:22.592000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank3]:V0615 22:51:22.593000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank7]:V0615 22:51:22.593000 20536 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank5]:V0615 22:51:22.593000 20534 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank1]:V0615 22:51:22.593000 20530 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank3]:V0615 22:51:22.593000 20532 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank6]:V0615 22:51:22.638000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank0]:V0615 22:51:22.638000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank2]:V0615 22:51:22.638000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank4]:V0615 22:51:22.638000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(1) on mesh dim 1
+[rank6]:V0615 22:51:22.639000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank0]:V0615 22:51:22.639000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank2]:V0615 22:51:22.639000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank4]:V0615 22:51:22.639000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(0) to R on mesh dim 1
+[rank6]:V0615 22:51:22.639000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank0]:V0615 22:51:22.639000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank2]:V0615 22:51:22.640000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank4]:V0615 22:51:22.640000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from S(1) to S(0) on mesh dim 0
+[rank6]:V0615 22:51:22.643000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank0]:V0615 22:51:22.643000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank2]:V0615 22:51:22.643000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+[rank4]:V0615 22:51:22.643000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from R to S(0) on mesh dim 1
+  Raw result: (Partial(sum), Partial(sum))
+  WARNING: Got (Partial(sum), Partial(sum)), expected (Shard(dim=0), Partial(sum))
+[rank6]:V0615 22:51:22.644000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank0]:V0615 22:51:22.644000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank6]:V0615 22:51:22.645000 20535 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank2]:V0615 22:51:22.645000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank4]:V0615 22:51:22.645000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(0) on mesh dim 0
+[rank0]:V0615 22:51:22.645000 20529 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank4]:V0615 22:51:22.646000 20533 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+[rank2]:V0615 22:51:22.646000 20531 .venv/lib/python3.12/site-packages/torch/distributed/tensor/_redistribute.py:189] redistribute from P to S(1) on mesh dim 1
+  Final result: (Shard(dim=0), Shard(dim=1))
+
+SUCCESS: Output matches input placement (Shard(dim=0), Shard(dim=1))
+[rank4]:[E615 22:51:23.473306447 ProcessGroupNCCL.cpp:542] [Rank 0] Collective WorkNCCL(SeqNum=4, OpType=COALESCED, NumelIn=524288, NumelOut=262144, Timeout(ms)=600000) raised the following async exception: NCCL error: unhandled system error (run with NCCL_DEBUG=INFO for details), NCCL version 2.21.5
+ncclSystemError: System call (e.g. socket, malloc) or external library call failed or device error. 
+Last error:
+
+Exception raised from checkForNCCLErrorsInternal at ../torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:2027 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x96 (0x7ff76b2b9446 in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libc10.so)
+frame #1: c10d::ProcessGroupNCCL::checkForNCCLErrorsInternal(std::shared_ptr<c10d::NCCLComm>&) + 0x220 (0x7ff7208002a0 in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #2: c10d::ProcessGroupNCCL::WorkNCCL::checkAndSetException() + 0x7c (0x7ff7208004ec in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::WorkNCCL::isCompleted() + 0x90 (0x7ff720800700 in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #4: c10d::ProcessGroupNCCL::watchdogHandler() + 0x1da (0x7ff720807e7a in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #5: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x14d (0x7ff72080993d in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #6: <unknown function> + 0x145c0 (0x7ff76b6d35c0 in /home/yifeit_google_com/dtensor-test/.venv/lib/python3.12/site-packages/torch/lib/libtorch.so)
+frame #7: <unknown function> + 0x891f5 (0x7ff76be801f5 in /lib/x86_64-linux-gnu/libc.so.6)
+frame #8: <unknown function> + 0x10989c (0x7ff76bf0089c in /lib/x86_64-linux-gnu/libc.so.6)
+
+
+============================================================
+COMMUNICATION SUMMARY:
+============================================================
+c10d_functional.all_gather_into_tensor: 4
+_dtensor.shard_dim_alltoall: 2
+c10d_functional.reduce_scatter_tensor: 2
+
+Communication Analysis:
+- All-reduce: NO
+- All-gather: YES
+- All-to-all: YES
+- Reduce-scatter: YES
